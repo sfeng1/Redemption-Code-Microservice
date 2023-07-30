@@ -17,7 +17,8 @@ Place Codes.csv in the same directory as UX.py.
 Run UX.py and go through the flow (ingestion) to import all the data in Codes.csv into your local database.
 
 Move verify.py to the same directory as UX.py (just to make the import easier in Python).  
-Finally, open verify.py and run it to create a web app at the address printed into the console (by default this is http://127.0.0.1:5000/).  
+Finally, open verify.py and run it to create a web app at the address printed into the console.  
+By default the web app address is localhost at http://127.0.0.1:5000/.    
 Now you can use the communication contract below to send a get call to get a response from the service. 
 
 IMPORTANT NOTES:  
