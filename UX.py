@@ -1,13 +1,14 @@
 import pandas
+import requests
 import mysql.connector
+from flask import Flask, jsonify, request
 from datetime import date
-
 
 mydb = mysql.connector.connect(
   host="localhost",
   user="sfeng1 ",
   password="mysql@HotSvsLoL1203"
-  ,database="cs361"
+  , database="cs361"
 )
 
 my_cursor = mydb.cursor()
@@ -35,7 +36,7 @@ def startup():
     elif (curr_input.lower() == "1"):
         ingest_warn()
     elif (curr_input.lower() == "2"):
-        print("TBD")
+        code_lookup()
 
 
 def startup_help(carried_input = None):
@@ -134,8 +135,6 @@ def ingest_comment(carried_input=None, file_pointer=None, input_name=None):
         for index, row in file_pointer.iterrows():
             rowtuple = tuple((row['Redeem_Code'], input_name, comment))
             value_list.append(rowtuple)
-            if index == 10:
-                break
 
         sql = "INSERT INTO redeem_code (code_string, code_name, code_comment) VALUES (%s, %s, %s)"
         val = value_list
@@ -174,9 +173,26 @@ def insert_complete(input_name=None, comment_name=None, i_count=None):
     elif user_input == 1:
         startup()
 
+
+def code_verify(lookup_code = None):
+    mycursor = mydb.cursor()
+    query = "SELECT code_string FROM redeem_code WHERE code_string = %s"
+    param = (lookup_code,)
+    mycursor.execute(query, param)
+    myresult = mycursor.fetchone()
+    return myresult
+
+
+def code_lookup(lookup_code = None):
+    lookup_code = input("Enter the code you wish to lookup:")
+    payload = {'code': str(lookup_code)}
+    r = requests.get('http://localhost:5000/code', params=payload)
+    return print(r.text)
+
+
 def main():
     startup()
 
 if __name__ == "__main__":
     main()
-    
+
