@@ -1,4 +1,7 @@
-# CS361
+## Redemption Code Microservice:
+This is a simple microservice that allows managers to input and retrieve redemption codes from a local mysql database instance. 
+Managers can assign tags to batches of ingested codes and retrieve those codes in requested quantities based on those tags. 
+This microsferve can also be called by an external entity to verify the validity of a  redemption code. 
 
 ## How to Setup Verify Mircroservice: 
 Download the following files in the zip:
