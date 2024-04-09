@@ -1,7 +1,6 @@
-## Redemption Code Microservice:
-
 ## See video demo here: https://youtu.be/G3btwIePNoM 
 
+## Redemption Code Microservice:
 This is a simple microservice that allows managers to input and retrieve redemption codes via a local MySQL database instance. 
 Managers can assign tags to batches of ingested codes and retrieve those codes in requested quantities based on those tags. 
 This microservice can also be called by an external entity to verify the validity of a redemption code. 
